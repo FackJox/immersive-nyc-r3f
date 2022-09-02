@@ -38,9 +38,9 @@ function CanvasWrapper() {
                 position={[0, 10, 10]}
             />
             <>
-                {/* <AnimationIntroductionCamera> */}
+                <AnimationIntroductionCamera from={200} to={0}>
                     <City />
-                {/* </AnimationIntroductionCamera> */}
+                </AnimationIntroductionCamera>
             </>
             <Camera />
             <Controls />
