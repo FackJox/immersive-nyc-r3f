@@ -5,6 +5,7 @@ import City from "./Objects/City"
 import Camera from "./Scene/Camera";
 import Controls from "./Scene/Controls";
 import AnimationIntroductionCamera from "./Animations/IntroductionCamera";
+import PostProcessing from "./Scene/PostProcessing";
 
 function CanvasWrapper() {
     return (
@@ -42,6 +43,7 @@ function CanvasWrapper() {
                     <City />
                 </AnimationIntroductionCamera>
             </>
+            <PostProcessing />
             <Camera />
             <Controls />
             <Stats />

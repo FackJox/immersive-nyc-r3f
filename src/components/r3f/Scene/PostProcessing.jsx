@@ -1,56 +1,46 @@
 import React from 'react'
-
-// /////////////////////////////////////////////////////////////////////////
-// //// POST PROCESSING
-
-// const params2 = {
-// 	...defaultSSROptions,
-// 	...{
-// 		enabled: true,
-// 		resolutionScale: 0.7,
-// 		velocityResolutionScale: 0.1,
-// 		CLAMP_RADIUS: 1,
-// 		temporalResolve: true,
-// 		temporalResolveMix: 1,
-// 		temporalResolveCorrection: 0.10,
-// 		blurMix: 0,
-// 		blurSharpness: 0,
-// 		blurKernelSize: 0,
-// 		rayDistance: 2.0,
-// 		intensity: 2.0,
-// 		colorExponent: 1,
-// 		maxRoughness: 1,
-// 		jitter: 0,
-// 		jitterRough: 0.04,
-// 		jitterSpread: 0.45,
-// 		roughnessFadeOut: 0.13,
-// 		rayFadeOut: 3.6,
-// 		thickness: 1.7,
-// 		ior: 1.8,
-// 		MAX_STEPS: 10,
-// 		NUM_BINARY_SEARCH_STEPS: 6,
-// 		maxDepthDifference: 55,
-// 		ALLOW_MISSED_RAYS: false,
-// 		USE_MRT: true,
-// 		USE_NORMALMAP: false,
-// 		USE_ROUGHNESSMAP: true,
-// 	}
-// }
-// const composer = new POSTPROCESSING.EffectComposer(renderer)
-// const renderPass = new POSTPROCESSING.RenderPass(scene, camera)
-
-// const ssrEffect = new SSREffect(scene, camera, params2)
-// let gui2 = new SSRDebugGUI(ssrEffect, params2)
-
-// const ssrPass = new POSTPROCESSING.EffectPass(camera, ssrEffect)
-
-// composer.addPass(renderPass)
-// composer.addPass(ssrPass)
-
+import { EffectComposer, SSR } from '@react-three/postprocessing'
+import { useControls } from 'leva'
 
 const PostProcessing = () => {
+
+  const { enabled, ...props } = useControls({
+    enabled: true,
+    ALLOW_MISSED_RAYS: false,
+    USE_MRT: true,
+    USE_NORMALMAP: false,
+    USE_ROUGHNESSMAP: true,
+    ENABLE_JITTERING: true,
+    ENABLE_BLUR: true,
+    DITHERING: false,
+    CLAMP_RADIUS: { value: 1, min: 0, max: 1},
+    resolutionScale: { value: 0.7, min: 0, max: 1 },
+    velocityResolutionScale: { value: 0.1, min: 0, max: 1 },
+    temporalResolve: true,
+    temporalResolveMix: { value: 1, min: 0, max: 1 },
+    temporalResolveCorrection: { value: 0.1, min: 0, max: 1 },
+    blurMix: { value: 0, min: 0, max: 1 },
+    blurSharpness: { value: 0, min: 0, max: 1 },
+    blurKernelSize: { value: 0, min: 0, max: 8 },
+    rayDistance: { value: 2, min: 0, max: 2 },
+    colorExponent: { value: 1, min: 0, max: 1},
+    intensity: { value: 2, min: 0, max: 5 },
+    maxSamples: { value: 0, min: 0, max: 1 },
+    maxRoughness: { value: 1, min: 0, max: 1 },
+    jitter: { value: 0, min: 0, max: 5 },
+    jitterSpread: { value: 0.45, min: 0, max: 1 },
+    jitterRough: { value: 0.04, min: 0, max: 1 },
+    roughnessFadeOut: { value: 0.13, min: 0, max: 1 },
+    rayFadeOut: { value: 3.6, min: 0, max: 5 },
+    thickness: { value: 1.7, min: 0, max: 10 },
+    ior: { value: 1.8, min: 0, max: 2 },
+    MAX_STEPS: { value: 10, min: 0, max: 20 },
+    NUM_BINARY_SEARCH_STEPS: { value: 6, min: 0, max: 10 },
+    maxDepthDifference: { value: 55, min: 0, max: 60 },
+    maxDepth: { value: 1, min: 0, max: 1 },
+  })
   return (
-    <div>PostProcessing</div>
+    <EffectComposer disableNormalPass>{enabled && <SSR {...props} />}</EffectComposer>
   )
 }
 
