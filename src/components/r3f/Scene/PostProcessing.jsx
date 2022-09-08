@@ -1,12 +1,12 @@
 import React from 'react'
-import { EffectComposer, SSR } from '@react-three/postprocessing'
+import { EffectComposer, SSR, Bloom, Vignette, Noise } from '@react-three/postprocessing'
 import { useControls } from 'leva'
 
 const PostProcessing = () => {
 
   const { enabled, ...props } = useControls({
     enabled: true,
-    ALLOW_MISSED_RAYS: false,
+    ALLOW_MISSED_RAYS: true,
     USE_MRT: true,
     USE_NORMALMAP: false,
     USE_ROUGHNESSMAP: true,
@@ -40,7 +40,12 @@ const PostProcessing = () => {
     maxDepth: { value: 1, min: 0, max: 1 },
   })
   return (
-    <EffectComposer disableNormalPass>{enabled && <SSR {...props} />}</EffectComposer>
+    <EffectComposer stencilBuffer={false} autoClear={false} disableNormalPass={true} >
+       <Bloom luminanceThreshold={0.01} luminanceSmoothing={1} intensity={20} mipmapBlur={true} radius={0.6} resolutionScale={0.5} />
+      {enabled && <SSR {...props} />}
+      <Noise opacity={0.02} />
+      <Vignette eskil={false} offset={0.1} darkness={1.1} />
+      </EffectComposer>
   )
 }
 
