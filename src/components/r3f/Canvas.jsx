@@ -8,6 +8,7 @@ import AnimationIntroductionCamera from "./Animations/IntroductionCamera";
 import PostProcessing from "./Scene/PostProcessing";
 
 function CanvasWrapper() {
+
     return (
         <Canvas
             mode="concurrent"
@@ -16,7 +17,10 @@ function CanvasWrapper() {
                 top: 0
             }}
             gl={{
-                // antialias: false,
+                powerPreference: "high-performance",
+                antialias: true,
+                stencil: false,
+                depth: false,
             }}
         >
             <color
@@ -27,15 +31,15 @@ function CanvasWrapper() {
                 attach="fog"
                 color="#000000"
                 near={10}
-                far={37000}
+                far={2700}
             />
             <ambientLight
                 color={0xa0a0fc}
-                intensity={100}
+                intensity={1}
             />
             <directionalLight
                 color={0x3a6dc0}
-                intensity={30}
+                intensity={9}
                 position={[0, 10, 10]}
             />
             <>
@@ -43,6 +47,7 @@ function CanvasWrapper() {
                     <City />
                 </AnimationIntroductionCamera>
             </>
+
             <PostProcessing />
             <Camera />
             <Controls />
