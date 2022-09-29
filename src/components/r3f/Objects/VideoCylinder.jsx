@@ -3,11 +3,11 @@ import { useVideoTexture } from '@react-three/drei'
 
 const NUMBER_OF_SEGMENTS = 5;
 
-function CylinderSplit({ VideoSrc, ...props }) {
+function CylinderSplit({ VideoSrc, rotation, ...props }) {
   const texture = useVideoTexture(VideoSrc);
   const thetaLength = (2 * Math.PI) / NUMBER_OF_SEGMENTS;
   const height = (1024 / 720) / thetaLength;
-  
+  console.log(rotation)
 
   return (
     <mesh position={[0, 0, 0]}>
@@ -17,6 +17,7 @@ function CylinderSplit({ VideoSrc, ...props }) {
       />
         <meshStandardMaterial map={texture} toneMapped={false} />
         {/* <meshBasicMaterial color={"hotpink"} /> */}
+        
     </mesh>
   );
 }
@@ -26,28 +27,24 @@ export default function VideoCylinder() {
     <>
       <group position={[0, -1, 0]}>
         <CylinderSplit
-          position={[0, 0, 0]}
-          rotation={[0, (2 * Math.PI * 1) / NUMBER_OF_SEGMENTS, 0]}
+          rotation={[0, (2 * Math.PI / NUMBER_OF_SEGMENTS) * 1, 0]}
           VideoSrc={"/matrixShort.mp4"}
         />
         <CylinderSplit
-          position={[0, 0, 0]}
-          rotation={[0, (2 * Math.PI * 2) / NUMBER_OF_SEGMENTS, 0]}
+          rotation={[0, (2 * Math.PI / NUMBER_OF_SEGMENTS)* 2 , 0]}
           VideoSrc={"/drei.mp4"}
         />
         <CylinderSplit
-          position={[0, 0, 0]}
-          rotation={[0, (2 * Math.PI * 3 ) / NUMBER_OF_SEGMENTS, 0]}
+          rotation={[0, (2 * Math.PI  / NUMBER_OF_SEGMENTS) * 3 , 0]}
           VideoSrc={"/galaxyShort.mp4"}
         />
         <CylinderSplit
-          position={[0, 0, 0]}
-          rotation={[0, (2 * Math.PI * 4 ) / NUMBER_OF_SEGMENTS, 0]}
+          rotation={[0, (2 * Math.PI  / NUMBER_OF_SEGMENTS) * 4 , 0]}
           VideoSrc={"/matrixShort.mp4"}
         />
         <CylinderSplit
           position={[0, 0, 0]}
-          rotation={[0, (2 * Math.PI * 5 ) / NUMBER_OF_SEGMENTS, 0]}
+          rotation={[0, (2 * Math.PI  / NUMBER_OF_SEGMENTS) * 5 , 0]}
           VideoSrc={"/galaxyShort.mp4"}
         />
       </group>
