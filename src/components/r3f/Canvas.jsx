@@ -7,6 +7,11 @@ import Controls from "./Scene/Controls";
 import AnimationIntroductionCamera from "./Animations/IntroductionCamera";
 import PostProcessing from "./Scene/PostProcessing";
 
+import VideoCylinder from "./Objects/VideoCylinder";
+
+import DevCamera from "./Scene/DevCamera";
+// Dev camera to look at center and make it easier for dev :D
+
 function CanvasWrapper() {
     return (
         <Canvas
@@ -39,12 +44,14 @@ function CanvasWrapper() {
                 position={[0, 10, 10]}
             />
             <>
-                <AnimationIntroductionCamera from={200} to={0}>
+                {/* <AnimationIntroductionCamera from={200} to={0}>
                     <City />
-                </AnimationIntroductionCamera>
+                </AnimationIntroductionCamera> */}
+                <VideoCylinder />
             </>
-            <PostProcessing />
-            <Camera />
+            {/* <PostProcessing /> */}
+            {/* <Camera /> */}
+            <DevCamera />
             <Controls />
             <Stats />
             <Preload all />
