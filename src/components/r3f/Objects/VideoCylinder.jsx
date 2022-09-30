@@ -3,14 +3,14 @@ import { useVideoTexture } from '@react-three/drei'
 
 const NUMBER_OF_SEGMENTS = 5;
 
-function CylinderSplit({ VideoSrc, rotation, ...props }) {
+export function CylinderSplit({ VideoSrc, rotation, ...props }) {
   const texture = useVideoTexture(VideoSrc);
   const thetaLength = (2 * Math.PI) / NUMBER_OF_SEGMENTS;
   const height = (1024 / 720) / thetaLength;
   console.log(rotation)
 
   return (
-    <mesh position={[0, 0, 0]}>
+    <mesh position={[0, 0, 0]} rotation={rotation}>
       <cylinderBufferGeometry
         attach="geometry"
         args={[2, 2, height, 16, 1, 1, 1, thetaLength]}
