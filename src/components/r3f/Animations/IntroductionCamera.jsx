@@ -1,5 +1,5 @@
-import React from 'react'
-import { animated, useSpring } from '@react-spring/three'
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
 
 // TODO redo animation
 
@@ -37,15 +37,19 @@ function introAnimation() {
 
 
 const IntroductionCamera = ({ from, to, onRest, children }) => {
-  const { position } = useSpring({
-    position: [0, 0, -to],
-    from: { position: [0, 0, -from] },
-    onRest
-  })
+    const groupRef = useRef(null)
 
-  return (
-    <animated.group position={(position)}>{children}</animated.group>
-  )
+    useEffect(() => {
+        gsap.fromTo(
+            groupRef.current.position,
+            { z: -from },
+            { z: -to, onComplete: onRest }
+        )
+    }, [from, to, onRest])
+
+    return (
+        <group ref={groupRef}>{children}</group>
+    )
 }
 
 export default IntroductionCamera

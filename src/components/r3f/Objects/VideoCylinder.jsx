@@ -7,7 +7,7 @@ export function CylinderSplit({ VideoSrc, rotation, ...props }) {
   const texture = useVideoTexture(VideoSrc);
   const thetaLength = (2 * Math.PI) / NUMBER_OF_SEGMENTS;
   const height = (1024 / 720) / thetaLength * 1.07;
-  console.log(rotation)
+  // console.log(rotation)
 
   return (
     <mesh position={[0, 0, 0]} rotation={rotation} >
