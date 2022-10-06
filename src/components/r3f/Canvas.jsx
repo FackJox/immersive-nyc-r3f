@@ -45,8 +45,8 @@ function CanvasWrapper() {
             />
             <>
                 {/* <AnimationIntroductionCamera from={200} to={0}>
-                    <City />
                 </AnimationIntroductionCamera> */}
+                    <City />
                 <VideoCylinder />
             </>
             {/* <PostProcessing /> */}

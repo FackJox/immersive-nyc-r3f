@@ -6,16 +6,16 @@ const NUMBER_OF_SEGMENTS = 5;
 export function CylinderSplit({ VideoSrc, rotation, ...props }) {
   const texture = useVideoTexture(VideoSrc);
   const thetaLength = (2 * Math.PI) / NUMBER_OF_SEGMENTS;
-  const height = (1024 / 720) / thetaLength;
+  const height = (1024 / 720) / thetaLength * 1.07;
   console.log(rotation)
 
   return (
-    <mesh position={[0, 0, 0]} rotation={rotation}>
+    <mesh position={[0, 0, 0]} rotation={rotation} >
       <cylinderBufferGeometry
         attach="geometry"
         args={[2, 2, height, 16, 1, 1, 1, thetaLength]}
       />
-        <meshStandardMaterial map={texture} toneMapped={false} />
+        <meshBasicMaterial map={texture} toneMapped={true} />
         {/* <meshBasicMaterial color={"hotpink"} /> */}
         
     </mesh>
@@ -25,7 +25,7 @@ export function CylinderSplit({ VideoSrc, rotation, ...props }) {
 export default function VideoCylinder() {
   return (
     <>
-      <group position={[0, -1, 0]}>
+      <group position={[1464.9, 381, -613.6]} scale={28.1}>
         <CylinderSplit
           rotation={[0, (2 * Math.PI / NUMBER_OF_SEGMENTS) * 1, 0]}
           VideoSrc={"/matrixShort.mp4"}

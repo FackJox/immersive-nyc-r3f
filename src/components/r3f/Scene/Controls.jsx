@@ -10,9 +10,11 @@ const Controls = () => {
             dampingFactor={0.04}
             enableRotate
             enableZoom
-            zoomSpeed={0.02}
-            maxPolarAngle={Math.PI / 2.2}
+            zoomSpeed={1}
+            maxPolarAngle={Math.PI}
             screenSpacePanning={false}
+            target={[1465, 385, -610]}
+
         // minDistance={35}
         // maxDistance={10000}
         />
